@@ -2,6 +2,9 @@
 <a href='https://ko-fi.com/ushifty' target='_blank'><img height='35' style='border:0px;height:46px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' />
  
  [Renewed Discord](https://discord.gg/P3RMrbwA8n)
+![20240615221557_1](https://github.com/krim27/Renewed-Banking/assets/92454198/7dc64f2f-faa9-4a34-819f-f5372fc81637)
+![20240615221554_1](https://github.com/krim27/Renewed-Banking/assets/92454198/32b7dc7b-3842-4cfa-8663-f0a43b50b2bc)
+![20240615221559_1](https://github.com/krim27/Renewed-Banking/assets/92454198/af8216dd-4144-44fd-b5d5-2f20c1be9aa2)
 
 # Project Description
 This resource is created & maintained by uShifty#1733 and was not a fork of any of the other banking resources.
