@@ -42,7 +42,7 @@ AddEventHandler('onResourceStart', function(resourceName)
 end)
 
 
-RegisterNetEvent('QBCore:Client:OnPlayerUnload', function()
+AddEventHandler('QBCore:Client:OnPlayerUnload', function()
     DeletePeds()
 end)
 

@@ -73,9 +73,12 @@
     .popup-content {
         max-width: 60rem;
         width: 100%;
-        background-color: var(--clr-primary);
         padding: 5rem;
         border-radius: 1rem;
+        background: radial-gradient(circle, rgba(36,135,38,1) 0%, rgba(0,0,0,1) 100%);
+        border-radius: 4px;
+        border: 4px solid #323232;
+        border-radius: 10px;
     }
 
     h2 {
@@ -104,7 +107,7 @@
         border: none;
         padding: 1.4rem;
         margin-bottom: 1rem;
-        background-color: #2a2b33;
+        background-color: #2b2b2b;
         color: #fff; 
     }
 </style>

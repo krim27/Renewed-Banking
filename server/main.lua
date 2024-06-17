@@ -188,11 +188,11 @@ local function getPlayerData(source, id)
     local Player = GetPlayerObject(tonumber(id))
     if not Player then Player = GetPlayerObjectFromID(id) end
     if not Player then
-        local msg = ("Cannot Find Account(%s)"):format(id)
+        -- local msg = ("Cannot Find Account(%s)"):format(id)
         print(locale("invalid_account", id))
-        if source then
-            Notify(source, {title = locale("bank_name"), description = msg, type = "error"})
-        end
+        -- if source then
+        --     Notify(source, {title = locale("bank_name"), description = msg, type = "error", position = 'bottom'})
+        -- end
     end
     return Player
 end
@@ -214,6 +214,7 @@ lib.callback.register('Renewed-Banking:server:deposit', function(source, data)
         end
         local Player2 = getPlayerData(source, data.fromAccount)
         Player2 = Player2 and GetCharacterName(Player2) or data.fromAccount
+        exports['ap-government']:chargeCityTax(source, "Bankingtransfers", amount, "bank")
         handleTransaction(data.fromAccount, locale("personal_acc") .. data.fromAccount, amount, data.comment, name, Player2, "deposit")
         local bankData = getBankData(source)
         return bankData
@@ -260,6 +261,7 @@ lib.callback.register('Renewed-Banking:server:withdraw', function(source, data)
         local Player2 = getPlayerData(source, data.fromAccount)
         Player2 = Player2 and GetCharacterName(Player2) or data.fromAccount
         AddMoney(Player, amount, 'cash', data.comment)
+        exports['ap-government']:chargeCityTax(source, "Bankingtransfers", amount, "cash")
         handleTransaction(data.fromAccount,locale("personal_acc") .. data.fromAccount, amount, data.comment, Player2, name, "withdraw")
         local bankData = getBankData(source)
         return bankData
@@ -299,6 +301,7 @@ lib.callback.register('Renewed-Banking:server:transfer', function(source, data)
             local canTransfer = RemoveAccountMoney(data.fromAccount, amount)
             if canTransfer then
                 AddMoney(Player2, amount, 'bank', data.comment)
+                exports['ap-government']:chargeCityTax(source, "Bankingtransfers", amount, "bank")
                 local name = GetCharacterName(Player2)
                 local transaction = handleTransaction(data.fromAccount, ("%s / %s"):format(cachedAccounts[data.fromAccount].name, data.fromAccount), amount, data.comment, cachedAccounts[data.fromAccount].name, name, "withdraw")
                 handleTransaction(data.stateid, ("%s / %s"):format(cachedAccounts[data.fromAccount].name, data.fromAccount), amount, data.comment, cachedAccounts[data.fromAccount].name, name, "deposit", transaction.trans_id)
@@ -327,6 +330,7 @@ lib.callback.register('Renewed-Banking:server:transfer', function(source, data)
 
             if funds.bank >= amount and RemoveMoney(Player, amount, 'bank', data.comment) then
                 AddMoney(Player2, amount, 'bank', data.comment)
+                exports['ap-government']:chargeCityTax(source, "Bankingtransfers", amount, "bank")
                 local name2 = GetCharacterName(Player2)
                 local transaction = handleTransaction(data.fromAccount, locale("personal_acc") .. data.fromAccount, amount, data.comment, name, name2, "withdraw")
                 handleTransaction(data.stateid, locale("personal_acc") .. data.fromAccount, amount, data.comment, name, name2, "deposit", transaction.trans_id)

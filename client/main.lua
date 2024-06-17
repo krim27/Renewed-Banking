@@ -74,17 +74,45 @@ CreateThread(function ()
             cb(newTransaction)
         end)
     end
-    exports.ox_target:addModel(Config.atms, {{
-        name = 'renewed_banking_openui',
-        event = 'Renewed-Banking:client:openBankUI',
-        icon = 'fas fa-money-check',
-        label = locale('view_bank'),
-        atm = true,
-        canInteract = function(_, distance)
-            return distance < 2.5
-        end
-    }})
+
+    local atmModels = { -- The mighty list of dumpters/trash cans
+        `prop_atm_03`,
+        `prop_atm_02`,
+        `prop_atm_01`,
+        `prop_fleeca_atm`
+    }
+
+    for i = 1, #atmModels do
+        exports.interact:AddModelInteraction({
+            model = atmModels[i],
+            offset = vec3(0.0, 0.0, 1.0), -- optional
+            distance = 4.0, -- optional
+            interactDst = 1.4, -- optional
+            id = 'atmodels', -- needed for removing interactions
+            ignoreLos = true,
+            options = {
+                label = "Use ATM",
+                event = "Renewed-Banking:client:openBankUI",
+                atm = true
+            }
+        })
+        exports.interact:RemoveModelInteraction(atmModels, 'atmodels')
+    end
+    -- exports.ox_target:addModel(Config.atms, {{
+    --     name = 'renewed_banking_openui',
+    --     event = 'Renewed-Banking:client:openBankUI',
+    --     icon = 'fas fa-money-check',
+    --     label = locale('view_bank'),
+    --     atm = true,
+    --     canInteract = function(_, distance)
+    --         return distance < 2.5
+    --     end
+    -- }})
 end)
+
+-- Example for Basic Peds
+
+
 
 local pedSpawned = false
 local peds = {basic = {}, adv ={}}
@@ -116,30 +144,41 @@ function CreatePeds()
         AddTextComponentString('Bank')
         EndTextCommandSetBlipName(blips[k])
     end
-
-    local targetOpts ={{
-        name = 'renewed_banking_openui',
-        event = 'Renewed-Banking:client:openBankUI',
-        icon = 'fas fa-money-check',
-        label = locale('view_bank'),
-        atm = false,
-        canInteract = function(_, distance)
-            return distance < 4.5
-        end
-    }}
-    exports.ox_target:addLocalEntity(peds.basic, targetOpts)
-    targetOpts[#targetOpts+1]={
-        name = 'renewed_banking_accountmng',
-        event = 'Renewed-Banking:client:accountManagmentMenu',
-        icon = 'fas fa-money-check',
-        label = locale('manage_bank'),
-        atm = false,
-        canInteract = function(_, distance)
-            return distance < 4.5
-        end
-    }
-    exports.ox_target:addLocalEntity(peds.adv, targetOpts)
     pedSpawned = true
+
+    for _, zone in ipairs(Config.normalbanks) do
+        exports.interact:AddInteraction({
+            coords = vec3(zone.coords.x, zone.coords.y, zone.coords.z),
+            distance = 5.0, -- optional
+            interactDst = 2.0, -- optional
+            --name = 'interactionName', -- optional
+            ignoreLos = true,
+            options = {
+                {
+                    label = 'Open Bank',
+                    event = 'Renewed-Banking:client:openBankUI',
+                },
+            },
+        })       
+    end
+    for _, zone in ipairs(Config.createaccountsbank) do
+        exports.interact:AddInteraction({
+            coords = vec3(zone.coords.x, zone.coords.y, zone.coords.z),
+            distance = 5.0, -- optional
+            interactDst = 2.0, -- optional
+            --name = 'interactionName', -- optional
+            options = {
+                {
+                    label = 'Open Bank',
+                    event = 'Renewed-Banking:client:openBankUI',
+                },
+                {
+                    label = 'Account Management',
+                    event = 'Renewed-Banking:client:accountManagmentMenu',
+                },
+            },
+        })       
+    end
 end
 
 function DeletePeds()
@@ -153,7 +192,6 @@ function DeletePeds()
         end
         peds[x] = {}
     end
-    pedSpawned = false
 end
 
 AddEventHandler('onResourceStop', function(resource)

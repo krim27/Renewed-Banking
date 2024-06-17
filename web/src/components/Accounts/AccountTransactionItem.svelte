@@ -60,7 +60,7 @@
 
 <style>
     .transaction {
-        background-color: var(--clr-primary-light);
+        background: #2b2b2b;        
         padding: 1.5rem;
         border-radius: 6px;
         font-size: 1.5rem;
@@ -68,6 +68,9 @@
         box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);
         -webkit-box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);
         -moz-box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);
+        border-radius: 4px;
+        border: 1px solid #707070;
+        border-radius: 10px;
     }
 
     .transaction:not(:last-child) {
@@ -80,21 +83,21 @@
     }
 
     .title-container > p {
-        background-color: var(--clr-green);
-        color: #0f745e;
+        background-color: #0f4900;
+        color: #ffffff;
         padding: 0.5rem 1rem;
         border-radius: 6px;
     }
     .title-container.withdrawTitle > p {
         background-color: var(--clr-orange);
-        color: #754a1a;
+        color: #ffffff;
         padding: 0.5rem 1rem;
         border-radius: 6px;
     }
     .trans_id {
-        color: #ced3eb;
-        background-color: var(--clr-green);
-        color: #0f745e;
+        color: #ffffff;
+        background-color: #0f4900;
+        color: #ffffff;
         padding: 0.3rem 0.8rem;
         border-radius: 6px;
         display: flex;
@@ -104,7 +107,7 @@
 
     .trans_id.withdrawId {
         background-color: var(--clr-orange);
-        color: #754a1a;
+        color: #ffffff;
         padding: 0.5rem 1rem;
         border-radius: 6px;
     }
@@ -125,18 +128,18 @@
     }
     .transaction h4 span:first-child {
         font-size: 1.4rem;
-        color: var(--clr-green);
+        color: #ffffff;
     }
     .transaction h4 span.withdraw {
-        color: var(--clr-orange);
+        color: #ffffff;
     }
     .transaction h4 span:nth-child(2) {
         margin-top: 0.5rem;
         margin-left: 0.2rem;
-        color: #ced3eb;
+        color: #ffffff;
     }
     .transaction h6 {
-        color: #B6BACF;
+        color: #ffffff;
         margin: 1rem 0 1.5rem;
 }
     .transaction h6 span {

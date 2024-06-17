@@ -22,9 +22,10 @@
         left: 5%;
         padding: 1rem;
         position: absolute;
-        background-color: rgb(32, 41, 48);
+        background: radial-gradient(circle, rgba(36,135,38,1) 0%, rgba(0,0,0,1) 100%);
         border-radius: 5px;
-        border: 4px solid #393A45;
+        border: 1px solid #707070;
+        border-radius: 10px;
         background-size: cover;
         background-position: center;
         opacity: 1;

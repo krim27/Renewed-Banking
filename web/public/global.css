@@ -1,10 +1,10 @@
 :root {
-    --clr-primary: #393A45;
-    --clr-primary-light: #393A45;
+    --clr-primary: #323232;
+    --clr-primary-light: #0f4900;
     --clr-primary-dark: transparant;
 
-    --clr-green: #34b8a8;
-    --clr-orange: #e08c2b;
+    --clr-green: #0f4900;
+    --clr-orange: #e02b2b;
     --clr-grey: #505050;
 
     --font-family: "Roboto", sans-serif;
@@ -78,18 +78,18 @@ h3.heading {
     border: 2px solid var(--clr-green);
 }
 
-.btn-grey:is(:hover, :focus, :focus-within) {
-    background-color: #000;
+/* .btn-grey:is(:hover, :focus, :focus-within) {
+    background-color: #00000000;
     color: var(--clr-grey);
 }
 .btn-orange:is(:hover, :focus, :focus-within) {
-    background-color: #000;
+    background-color: #00000000;
     color: var(--clr-orange);
 }
 .btn-green:is(:hover, :focus, :focus-within) {
-    background-color: #000;
+    background-color: #00000000;
     color: var(--clr-green);
-}
+} */
 
 .scroller {
     --size: 10rem;

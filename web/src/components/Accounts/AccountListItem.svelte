@@ -47,9 +47,10 @@
 
 <style>
     .account {
-        background-color: var(--clr-primary);
+        background: #2b2b2b;
         padding: 1rem;
         border-radius: 10px;
+        border: 1px solid #707070;
         cursor: pointer;
         box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);
         -webkit-box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);

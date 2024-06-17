@@ -20,7 +20,7 @@
         top: 4%;
     }
     .notificaion-content {
-        background-color: var(--clr-primary);
+        background: radial-gradient(circle, rgba(36,135,38,1) 0%, rgba(0,0,0,1) 100%);
         padding: 2rem;
         border-radius: 1rem;
         font-size: 1em;
